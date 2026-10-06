@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="sr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="PRODUCT LAB — premium AI creative studio za produkt fotografiju, oglase i social media sadržaj.">
+  <title>PRODUCT LAB — Product Creative Studio</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    .pricing { background: #f7f5f0; }
+    .pricing-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:45px; }
+    .price-card { position:relative; padding:36px 30px 30px; background:#fff; border:1px solid rgba(20,20,20,.12); min-height:470px; display:flex; flex-direction:column; }
+    .price-card.featured { background:#171717; color:#fff; border-color:#171717; transform:translateY(-10px); }
+    .price-label { font-size:11px; letter-spacing:.18em; font-weight:700; opacity:.65; }
+    .price { font-size:48px; line-height:1; margin:18px 0 14px; font-weight:600; letter-spacing:-.04em; }
+    .price small { font-size:11px; letter-spacing:.12em; text-transform:uppercase; opacity:.55; }
+    .price-card p { opacity:.68; line-height:1.65; min-height:55px; }
+    .price-card ul { list-style:none; padding:0; margin:20px 0 30px; border-top:1px solid rgba(20,20,20,.12); }
+    .price-card.featured ul { border-color:rgba(255,255,255,.16); }
+    .price-card li { padding:11px 0; border-bottom:1px solid rgba(20,20,20,.10); font-size:14px; }
+    .price-card.featured li { border-color:rgba(255,255,255,.12); }
+    .price-card li::before { content:'✓'; margin-right:10px; opacity:.55; }
+    .price-card .btn { margin-top:auto; text-align:center; }
+    .btn-outline { display:inline-flex; justify-content:center; align-items:center; gap:10px; padding:14px 20px; border:1px solid currentColor; color:inherit; text-decoration:none; font-size:12px; letter-spacing:.08em; text-transform:uppercase; }
+    .popular { position:absolute; top:0; right:0; padding:8px 13px; background:#c9a86a; color:#111; font-size:9px; font-weight:800; letter-spacing:.12em; }
+    .custom-package { margin-top:18px; padding:28px 30px; border:1px solid rgba(20,20,20,.12); display:flex; justify-content:space-between; align-items:center; gap:30px; }
+    .custom-package h3 { margin:6px 0; font-size:22px; }
+    .custom-package p { margin:0; opacity:.65; }
+    .pricing-note { margin-top:18px; font-size:11px; opacity:.5; line-height:1.6; }
+    @media (max-width:850px) { .pricing-grid { grid-template-columns:1fr; } .price-card.featured { transform:none; } .custom-package { flex-direction:column; align-items:flex-start; } }
+  </style>
+
+</head>
+<body>
+  <div class="noise"></div>
+  <header class="site-header">
+    <a class="logo" href="#top" aria-label="Product Lab početna">
+      <span class="logo-mark">PL</span>
+      <span>PRODUCT <b>LAB</b></span>
+    </a>
+    <button class="menu-toggle" aria-label="Otvori meni" aria-expanded="false"><span></span><span></span></button>
+    <nav class="nav" aria-label="Glavna navigacija">
+      <a href="#work">Rad</a>
+      <a href="#services">Usluge</a>
+      <a href="#pricing">Cene</a>
+      <a href="#process">Proces</a>
+      <a class="nav-cta" href="#contact">Započni projekat</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero section-pad">
+      <div class="hero-copy reveal">
+        <p class="eyebrow">AI CREATIVE STUDIO / E-COMMERCE</p>
+        <h1>Jedan proizvod.<br><em>Kompletna kampanja.</em></h1>
+        <p class="lead">Pretvaramo postojeće fotografije proizvoda u premium vizuale za webshop, Instagram, oglase i kratki video.</p>
+        <div class="hero-actions">
+          <a class="btn btn-gold" href="#work">Pogledaj rad</a>
+          <a class="text-link" href="#contact">Imaš proizvod? <span>→</span></a>
+        </div>
+        <div class="hero-meta"><span>PRODUCT</span><span>ADS</span><span>SOCIAL</span><span>VIDEO</span></div>
+      </div>
+      <div class="hero-visual reveal delay-1">
+        <div class="hero-frame">
+          <img src="assets/hero-wide.webp" alt="The Golden Circle premium olovka — hero vizual" loading="eager">
+          <div class="frame-label">CASE STUDY 01 <span>THE GOLDEN CIRCLE</span></div>
+        </div>
+        <div class="orb"></div>
+      </div>
+    </section>
+
+    <section class="statement section-pad">
+      <p class="eyebrow">THE IDEA</p>
+      <h2>Ne prodajemo „AI slike”.<br><span>Prodajemo sadržaj koji proizvodu daje vrednost.</span></h2>
+    </section>
+
+    <section id="work" class="work section-pad">
+      <div class="section-heading reveal">
+        <div><p class="eyebrow">CASE STUDY 01</p><h2>The Golden Circle</h2></div>
+        <p>Od jedne osnovne fotografije do kompletnog vizuelnog sistema proizvoda.</p>
+      </div>
+
+      <div class="input-card reveal">
+        <div class="input-copy"><span class="step">01</span><div><h3>THE INPUT</h3><p>Originalni proizvod kao početni materijal.</p></div></div>
+        <button class="image-button" data-lightbox="assets/original.webp" aria-label="Otvori originalnu fotografiju"><img src="assets/original.webp" alt="Originalna fotografija The Golden Circle olovke"></button>
+      </div>
+
+      <div class="work-grid">
+        <article class="work-card tall reveal"><button class="image-button" data-lightbox="assets/lifestyle.webp"><img src="assets/lifestyle.webp" alt="Lifestyle fotografija olovke na luksuznom radnom stolu" loading="lazy"></button><div class="card-copy"><span>02 / LIFESTYLE</span><h3>Proizvod u kontekstu.</h3><p>Vizual koji pokazuje gde i kako proizvod živi.</p></div></article>
+        <article class="work-card reveal delay-1"><button class="image-button" data-lightbox="assets/product-display.webp"><img src="assets/product-display.webp" alt="Detaljna product prezentacija olovke" loading="lazy"></button><div class="card-copy"><span>03 / PRODUCT DETAIL</span><h3>Detalji koji prodaju.</h3><p>Forma, materijal, logo i završna obrada.</p></div></article>
+        <article class="work-card reveal delay-2"><button class="image-button" data-lightbox="assets/flatlay.webp"><img src="assets/flatlay.webp" alt="Premium flatlay The Golden Circle proizvoda" loading="lazy"></button><div class="card-copy"><span>04 / FLATLAY</span><h3>Brand environment.</h3><p>Proizvod postavljen u premium svakodnevni kontekst.</p></div></article>
+      </div>
+
+      <div class="feature-grid">
+        <article class="feature-card reveal"><button class="image-button" data-lightbox="assets/ad-vertical.webp"><img src="assets/ad-vertical.webp" alt="Vertikalna reklamna kreativa za The Golden Circle" loading="lazy"></button><div class="feature-overlay"><span>05 / AD CREATIVE</span><h3>Od proizvoda do ponude.</h3><p>Benefit + kontekst + CTA u jednom vizualu.</p></div></article>
+        <article class="feature-card reveal delay-1"><button class="image-button" data-lightbox="assets/ad-square.webp"><img src="assets/ad-square.webp" alt="Kvadratna reklama za The Golden Circle" loading="lazy"></button><div class="feature-overlay"><span>06 / STATIC AD</span><h3>Vizual za feed.</h3><p>Kreativa spremna za social i performance testiranje.</p></div></article>
+      </div>
+
+      <div class="carousel-case reveal">
+        <div class="carousel-copy"><span>07 / CAROUSEL</span><h3>Jedan proizvod.<br>Više razloga za kupovinu.</h3><p>Carousel pretvara karakteristike proizvoda u strukturisanu prodajnu priču.</p><a href="#contact" class="text-link">Napravimo isto za tvoj proizvod <span>→</span></a></div>
+        <button class="image-button carousel-image" data-lightbox="assets/carousel.webp"><img src="assets/carousel.webp" alt="Carousel oglas The Golden Circle" loading="lazy"></button>
+      </div>
+
+      <div class="final-hero reveal">
+        <button class="image-button" data-lightbox="assets/hero-display.webp"><img src="assets/hero-display.webp" alt="Finalni premium hero vizual The Golden Circle" loading="lazy"></button>
+        <div class="final-caption"><span>08 / FINAL HERO</span><strong>Ready for the brand.</strong></div>
+      </div>
+    </section>
+
+
+    <section id="pricing" class="pricing section-pad">
+      <div class="section-heading reveal">
+        <div><p class="eyebrow">CONTENT PACKAGES</p><h2>Izaberi nivo sadržaja.</h2></div>
+        <p>Jedan proizvod ili kompletna kampanja — izaberi paket koji odgovara tvojoj trenutnoj potrebi.</p>
+      </div>
+      <div class="pricing-grid">
+        <article class="price-card reveal">
+          <span class="price-label">START</span>
+          <div class="price">49€ <small>od</small></div>
+          <p>Za jedan proizvod i osnovnu premium prezentaciju.</p>
+          <ul>
+            <li>5 kreativnih vizuala</li>
+            <li>2 lifestyle / product scene</li>
+            <li>1 social creative</li>
+            <li>1 reklamni vizual</li>
+          </ul>
+          <a class="btn btn-outline" href="#contact" data-package="START — 49€">Započni projekat <span>→</span></a>
+        </article>
+
+        <article class="price-card featured reveal delay-1">
+          <div class="popular">MOST POPULAR</div>
+          <span class="price-label">GROW</span>
+          <div class="price">99€ <small>od</small></div>
+          <p>Za brendove kojima treba kompletan content za jedan proizvod.</p>
+          <ul>
+            <li>10 kreativnih vizuala</li>
+            <li>3 Story kreative</li>
+            <li>2 reklamne kreative</li>
+            <li>1 carousel</li>
+            <li>1 kratki Reel</li>
+          </ul>
+          <a class="btn btn-gold" href="#contact" data-package="GROW — 99€">Započni projekat <span>→</span></a>
+        </article>
+
+        <article class="price-card reveal delay-2">
+          <span class="price-label">BRAND</span>
+          <div class="price">199€ <small>od</small></div>
+          <p>Za kompletnu vizuelnu kampanju proizvoda.</p>
+          <ul>
+            <li>20 kreativnih vizuala</li>
+            <li>5 Story kreativa</li>
+            <li>3 reklamne kreative</li>
+            <li>2 carousela</li>
+            <li>2 Reels</li>
+            <li>Hero image + lifestyle campaign</li>
+          </ul>
+          <a class="btn btn-outline" href="#contact" data-package="BRAND — 199€">Započni projekat <span>→</span></a>
+        </article>
+      </div>
+      <div class="custom-package reveal">
+        <div><span class="eyebrow">CUSTOM</span><h3>Imaš više proizvoda ili veću kampanju?</h3><p>Napravimo paket prema količini proizvoda, kanalima i ciljevima kampanje.</p></div>
+        <a class="text-link package-btn" href="#contact" data-package="CUSTOM — individualna ponuda">Zatraži custom ponudu <span>→</span></a>
+      </div>
+      <p class="pricing-note">Cene su početne i odnose se na standardne pakete. Za veći broj proizvoda i kompleksnije kampanje pripremamo individualnu ponudu.</p>
+    </section>
+
+    <section id="services" class="services section-pad dark-section">
+      <div class="section-heading reveal"><div><p class="eyebrow">WHAT WE BUILD</p><h2>Creative sistem,<br>ne samo jedna slika.</h2></div><p>Od jednog inputa pravimo set asseta koji može da se koristi kroz ceo funnel.</p></div>
+      <div class="service-grid">
+        <article class="service reveal"><span>01</span><h3>Product Visuals</h3><p>Product shot, lifestyle, hero, flatlay, detail i premium scene.</p></article>
+        <article class="service reveal delay-1"><span>02</span><h3>Ad Creatives</h3><p>Static, Story, carousel i varijacije za testiranje različitih hookova.</p></article>
+        <article class="service reveal delay-2"><span>03</span><h3>Social Content</h3><p>Feed, Story, Reel cover i sadržaj prilagođen identitetu brenda.</p></article>
+        <article class="service reveal"><span>04</span><h3>Video Concepts</h3><p>Product reel, cinematic product, unboxing i kratke video sekvence.</p></article>
+      </div>
+    </section>
+
+    <section id="process" class="process section-pad">
+      <div class="section-heading reveal"><div><p class="eyebrow">HOW IT WORKS</p><h2>Jednostavan proces.</h2></div></div>
+      <div class="process-grid">
+        <div class="process-step reveal"><span>01</span><h3>Pošalješ proizvod</h3><p>Fotografije, logo i osnovne informacije o proizvodu.</p></div>
+        <div class="process-step reveal delay-1"><span>02</span><h3>Definišemo pravac</h3><p>Biramo stil, kontekst i assete koji su ti potrebni.</p></div>
+        <div class="process-step reveal delay-2"><span>03</span><h3>Izgradimo kreativu</h3><p>Generisanje, dizajn, kompozicija i kontrola kvaliteta.</p></div>
+        <div class="process-step reveal"><span>04</span><h3>Dobiješ gotov set</h3><p>Fajlovi organizovani za webshop, social i oglase.</p></div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact section-pad dark-section">
+      <div class="contact-inner reveal">
+        <p class="eyebrow">START A PROJECT</p>
+        <h2>Imaš proizvod.<br><em>Mi pravimo kampanju.</em></h2>
+        <p class="lead">Pošalji osnovne informacije. Dobićeš predlog kreativnog pravca i sledeće korake.</p>
+        <form id="contactForm" class="contact-form">
+          <label>Ime / brend<input id="name" name="name" type="text" placeholder="Tvoje ime ili naziv brenda" required></label>
+          <label>Email<input id="email" name="email" type="email" placeholder="email@brend.rs" required></label>
+          <label>Izabrani paket<input id="selected-package" name="package" type="text" placeholder="Izaberi paket iznad" readonly></label>
+          <label>Šta prodaješ?<textarea id="message" name="message" rows="4" placeholder="Npr. ženske torbice, 12 proizvoda..."></textarea></label>
+          <button class="btn btn-gold" type="submit">Pošalji upit <span>→</span></button>
+          <p class="form-note">Forma otvara tvoj email klijent — nema backend-a i nema čuvanja podataka na sajtu.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer"><span>PRODUCT LAB</span><span>© 2026</span><a href="#top">Back to top ↑</a></footer>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true"><button class="lightbox-close" aria-label="Zatvori">×</button><img id="lightboxImage" src="" alt=""></div>
+  <script src="script.js"></script>
+</body>
+</html>
