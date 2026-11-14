@@ -1,18 +1,68 @@
+/* Language: English by default, Serbian through the EN / SR switch or ?lang=sr */
+const LANG_KEY = 'productlab-lang';
+let currentLang = 'en';
+const t = key => (I18N[currentLang] && I18N[currentLang][key]) || I18N.en[key] || key;
+
 const menuToggle = document.querySelector('.menu-toggle');
 const nav = document.querySelector('.nav');
+
+function getInitialLang() {
+  try {
+    const fromUrl = new URLSearchParams(window.location.search).get('lang');
+    if (fromUrl === 'sr' || fromUrl === 'en') return fromUrl;
+  } catch (e) {}
+  try {
+    const saved = window.localStorage.getItem(LANG_KEY);
+    if (saved === 'sr' || saved === 'en') return saved;
+  } catch (e) {}
+  return 'en';
+}
+
+function applyLang(lang, persist) {
+  currentLang = lang;
+  document.documentElement.lang = lang;
+
+  document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = t(el.dataset.i18n); });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => { el.innerHTML = t(el.dataset.i18nHtml); });
+  document.querySelectorAll('[data-i18n-attr]').forEach(el => {
+    el.dataset.i18nAttr.split(';').forEach(pair => {
+      const [attr, key] = pair.split(':');
+      if (attr && key) el.setAttribute(attr.trim(), t(key.trim()));
+    });
+  });
+
+  const description = document.querySelector('meta[name="description"]');
+  if (description) description.setAttribute('content', t('meta_desc'));
+
+  if (menuToggle && nav) {
+    menuToggle.setAttribute('aria-label', nav.classList.contains('open') ? t('menu_close') : t('menu_open'));
+  }
+
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.setAttribute('aria-pressed', String(btn.dataset.lang === lang));
+  });
+
+  if (persist) {
+    try { window.localStorage.setItem(LANG_KEY, lang); } catch (e) {}
+  }
+}
+
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => applyLang(btn.dataset.lang, true));
+});
 
 if (menuToggle && nav) {
   menuToggle.addEventListener('click', () => {
     const open = nav.classList.toggle('open');
     menuToggle.setAttribute('aria-expanded', String(open));
-    menuToggle.setAttribute('aria-label', open ? 'Zatvori meni' : 'Otvori meni');
+    menuToggle.setAttribute('aria-label', open ? t('menu_close') : t('menu_open'));
   });
 
   nav.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
       nav.classList.remove('open');
       menuToggle.setAttribute('aria-expanded', 'false');
-      menuToggle.setAttribute('aria-label', 'Otvori meni');
+      menuToggle.setAttribute('aria-label', t('menu_open'));
     });
   });
 }
@@ -32,7 +82,7 @@ if (lightbox && lightboxImage) {
   document.querySelectorAll('[data-lightbox]').forEach(button => {
     button.addEventListener('click', () => {
       lightboxImage.src = button.dataset.lightbox;
-      lightboxImage.alt = button.querySelector('img')?.alt || 'Portfolio vizual';
+      lightboxImage.alt = button.querySelector('img')?.alt || t('portfolio_visual');
       lightbox.classList.add('open');
       lightbox.setAttribute('aria-hidden', 'false');
     });
@@ -82,13 +132,15 @@ if (form) {
     const name = document.getElementById('name')?.value.trim() || '';
     const email = document.getElementById('email')?.value.trim() || '';
     const message = document.getElementById('message')?.value.trim() || '';
-    const packageName = packageInput?.value.trim() || 'Nije izabran';
+    const packageName = packageInput?.value.trim() || t('mail_none');
 
-    const subject = encodeURIComponent(`PRODUCT LAB novi upit: ${name}`);
+    const subject = encodeURIComponent(`${t('mail_subject')}${name}`);
     const body = encodeURIComponent(
-      `Ime / brend: ${name}\nEmail: ${email}\nIzabrani paket: ${packageName}\n\nŠta prodaje: ${message}`
+      `${t('mail_name')}: ${name}\n${t('mail_email')}: ${email}\n${t('mail_pkg')}: ${packageName}\n\n${t('mail_msg')}: ${message}`
     );
 
     window.location.href = `mailto:suvajcevicdaca@gmail.com?subject=${subject}&body=${body}`;
   });
 }
+
+applyLang(getInitialLang(), false);
