@@ -84,7 +84,7 @@ if (form) {
     const message = document.getElementById('message')?.value.trim() || '';
     const packageName = packageInput?.value.trim() || 'Nije izabran';
 
-    const subject = encodeURIComponent(`PRODUCT LAB — novi upit od ${name}`);
+    const subject = encodeURIComponent(`PRODUCT LAB novi upit: ${name}`);
     const body = encodeURIComponent(
       `Ime / brend: ${name}\nEmail: ${email}\nIzabrani paket: ${packageName}\n\nŠta prodaje: ${message}`
     );
