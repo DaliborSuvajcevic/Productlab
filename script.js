@@ -142,7 +142,7 @@ async function emailJsSend(templateId, params) {
   if (!res.ok) throw new Error('EmailJS ' + res.status);
 }
 
-if (formNote && emailJsReady()) formNote.setAttribute('data-i18n', 'f_note_js');
+if (formNote && emailJsReady()) formNote.setAttribute('data-i18n', window.EMAILJS.replyTemplateId ? 'f_note_js' : 'f_note_js1');
 
 if (form) {
   form.addEventListener('submit', async event => {
@@ -163,7 +163,7 @@ if (form) {
     }
 
     const submitBtn = form.querySelector('button[type="submit"]');
-    const params = { from_name: name, from_email: email, package: packageName, message: message, lang: document.documentElement.lang || 'en' };
+    const params = { name: name, email: email, title: name, from_name: name, from_email: email, package: packageName, message: message, lang: document.documentElement.lang || 'en' };
     submitBtn.disabled = true;
     if (formNote) formNote.textContent = t('f_sending');
     try {
@@ -173,7 +173,7 @@ if (form) {
       }
       form.reset();
       if (packageInput) packageInput.value = '';
-      if (formNote) formNote.textContent = t('f_ok');
+      if (formNote) formNote.textContent = t(window.EMAILJS.replyTemplateId ? 'f_ok' : 'f_ok1');
     } catch (e) {
       if (formNote) formNote.textContent = t('f_err');
     } finally {
