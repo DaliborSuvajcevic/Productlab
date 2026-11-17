@@ -98,6 +98,10 @@ const I18N = {
     mail_email: `Email`,
     mail_pkg: `Selected package`,
     mail_msg: `What they sell`,
+    f_note_js: `Your inquiry is sent directly and you get a confirmation by email. Nothing is stored on the site.`,
+    f_sending: `Sending...`,
+    f_ok: `Thank you. Your inquiry is sent and a confirmation is on its way to your email.`,
+    f_err: `Something went wrong. Please write to suvajcevicdaca@gmail.com or send a DM on Instagram.`,
     mail_none: `Not selected`
   },
   sr: {
@@ -198,6 +202,10 @@ const I18N = {
     mail_email: `Email`,
     mail_pkg: `Izabrani paket`,
     mail_msg: `Šta prodaje`,
+    f_note_js: `Upit se šalje direktno, a potvrdu dobijate na mejl. Ništa se ne čuva na sajtu.`,
+    f_sending: `Šaljem...`,
+    f_ok: `Hvala. Upit je poslat, a potvrda stiže na Vaš mejl.`,
+    f_err: `Došlo je do greške. Pišite na suvajcevicdaca@gmail.com ili pošaljite DM na Instagramu.`,
     mail_none: `Nije izabran`
   }
 };

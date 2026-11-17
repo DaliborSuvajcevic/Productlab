@@ -123,10 +123,29 @@ document.querySelectorAll('.package-btn, .price-card a[href="#contact"]').forEac
   });
 });
 
-/* Contact form opens the visitor's email application */
+/* Contact form: sends through EmailJS when configured, otherwise opens the visitor's email app */
 const form = document.getElementById('contactForm');
+const formNote = form ? form.querySelector('.form-note') : null;
+
+function emailJsReady() {
+  const c = window.EMAILJS || {};
+  return Boolean(c.publicKey && c.serviceId && c.notifyTemplateId);
+}
+
+async function emailJsSend(templateId, params) {
+  const c = window.EMAILJS;
+  const res = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ service_id: c.serviceId, template_id: templateId, user_id: c.publicKey, template_params: params })
+  });
+  if (!res.ok) throw new Error('EmailJS ' + res.status);
+}
+
+if (formNote && emailJsReady()) formNote.setAttribute('data-i18n', 'f_note_js');
+
 if (form) {
-  form.addEventListener('submit', event => {
+  form.addEventListener('submit', async event => {
     event.preventDefault();
 
     const name = document.getElementById('name')?.value.trim() || '';
@@ -134,12 +153,32 @@ if (form) {
     const message = document.getElementById('message')?.value.trim() || '';
     const packageName = packageInput?.value.trim() || t('mail_none');
 
-    const subject = encodeURIComponent(`${t('mail_subject')}${name}`);
-    const body = encodeURIComponent(
-      `${t('mail_name')}: ${name}\n${t('mail_email')}: ${email}\n${t('mail_pkg')}: ${packageName}\n\n${t('mail_msg')}: ${message}`
-    );
+    if (!emailJsReady()) {
+      const subject = encodeURIComponent(`${t('mail_subject')}${name}`);
+      const body = encodeURIComponent(
+        `${t('mail_name')}: ${name}\n${t('mail_email')}: ${email}\n${t('mail_pkg')}: ${packageName}\n\n${t('mail_msg')}: ${message}`
+      );
+      window.location.href = `mailto:suvajcevicdaca@gmail.com?subject=${subject}&body=${body}`;
+      return;
+    }
 
-    window.location.href = `mailto:suvajcevicdaca@gmail.com?subject=${subject}&body=${body}`;
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const params = { from_name: name, from_email: email, package: packageName, message: message, lang: document.documentElement.lang || 'en' };
+    submitBtn.disabled = true;
+    if (formNote) formNote.textContent = t('f_sending');
+    try {
+      await emailJsSend(window.EMAILJS.notifyTemplateId, params);
+      if (window.EMAILJS.replyTemplateId) {
+        try { await emailJsSend(window.EMAILJS.replyTemplateId, params); } catch (e) { /* inquiry already delivered */ }
+      }
+      form.reset();
+      if (packageInput) packageInput.value = '';
+      if (formNote) formNote.textContent = t('f_ok');
+    } catch (e) {
+      if (formNote) formNote.textContent = t('f_err');
+    } finally {
+      submitBtn.disabled = false;
+    }
   });
 }
 
